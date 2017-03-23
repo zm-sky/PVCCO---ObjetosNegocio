@@ -23,6 +23,8 @@ import javax.xml.bind.annotation.XmlTransient;
 /**
  *
  * @author Raul Karim Sabag Ballesteros
+ * @author Adrian Martinez
+ * @author Robert Pedraza
  */
 @Entity
 @Table(name = "apartado")
