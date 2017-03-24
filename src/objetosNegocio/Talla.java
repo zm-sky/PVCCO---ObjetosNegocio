@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Talla.findAll", query = "SELECT t FROM Talla t"),
     @NamedQuery(name = "Talla.findByIdTalla", query = "SELECT t FROM Talla t WHERE t.idTalla = :idTalla"),
     @NamedQuery(name = "Talla.findByTalla", query = "SELECT t FROM Talla t WHERE t.talla = :talla AND  t.idModelo = :idModelo"),
+    @NamedQuery(name = "Talla.findByModelo", query = "SELECT t FROM Talla t WHERE t.idModelo = :idModelo"),
     @NamedQuery(name = "Talla.findByInventarioApartado", query = "SELECT t FROM Talla t WHERE t.inventarioApartado = :inventarioApartado"),
     @NamedQuery(name = "Talla.findByInventarioRegular", query = "SELECT t FROM Talla t WHERE t.inventarioRegular = :inventarioRegular"),
     @NamedQuery(name = "Talla.findByNoCodigoDeBarras", query = "SELECT t FROM Talla t WHERE t.noCodigoDeBarras = :noCodigoDeBarras")})
