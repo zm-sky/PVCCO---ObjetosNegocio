@@ -1,4 +1,3 @@
-
 package objetosNegocio;
 
 import java.io.Serializable;
@@ -28,6 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Modelo.findByNombre", query = "SELECT m FROM Modelo m WHERE m.nombre = :nombre"),
     @NamedQuery(name = "Modelo.findByPrecio", query = "SELECT m FROM Modelo m WHERE m.precio = :precio")})
 public class Modelo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
