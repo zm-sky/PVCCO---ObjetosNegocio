@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
@@ -15,16 +19,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
+ * @author zippy
  */
 @Entity
 @Table(name = "tallaapartado")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TallaApartado.findAll", query = "SELECT t FROM TallaApartado t"),
-    @NamedQuery(name = "TallaApartado.findByIdTallaApartado", query = "SELECT t FROM TallaApartado t WHERE t.idTallaApartado = :idTallaApartado"),
-    @NamedQuery(name = "TallaApartado.findByPrecio", query = "SELECT t FROM TallaApartado t WHERE t.precio = :precio")})
+    @NamedQuery(name = "Tallaapartado.findAll", query = "SELECT t FROM Tallaapartado t")
+    , @NamedQuery(name = "Tallaapartado.findByIdTallaApartado", query = "SELECT t FROM Tallaapartado t WHERE t.idTallaApartado = :idTallaApartado")
+    , @NamedQuery(name = "Tallaapartado.findByPrecio", query = "SELECT t FROM Tallaapartado t WHERE t.precio = :precio")})
 public class TallaApartado implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -106,7 +111,7 @@ public class TallaApartado implements Serializable {
 
     @Override
     public String toString() {
-        return "objetosNegocio.TallaApartado[ idTallaApartado=" + idTallaApartado + " ]";
+        return "objetosNegocio.Tallaapartado[ idTallaApartado=" + idTallaApartado + " ]";
     }
-
+    
 }

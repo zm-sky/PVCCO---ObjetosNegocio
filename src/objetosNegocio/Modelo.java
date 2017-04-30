@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,16 +21,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
+ * @author zippy
  */
 @Entity
 @Table(name = "modelo")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Modelo.findAll", query = "SELECT m FROM Modelo m"),
-    @NamedQuery(name = "Modelo.findByIdModelo", query = "SELECT m FROM Modelo m WHERE m.idModelo = :idModelo"),
-    @NamedQuery(name = "Modelo.findByNombre", query = "SELECT m FROM Modelo m WHERE m.nombre = :nombre"),
-    @NamedQuery(name = "Modelo.findByPrecio", query = "SELECT m FROM Modelo m WHERE m.precio = :precio")})
+    @NamedQuery(name = "Modelo.findAll", query = "SELECT m FROM Modelo m")
+    , @NamedQuery(name = "Modelo.findByIdModelo", query = "SELECT m FROM Modelo m WHERE m.idModelo = :idModelo")
+    , @NamedQuery(name = "Modelo.findByNombre", query = "SELECT m FROM Modelo m WHERE m.nombre = :nombre")
+    , @NamedQuery(name = "Modelo.findByPrecio", query = "SELECT m FROM Modelo m WHERE m.precio = :precio")
+    , @NamedQuery(name = "Modelo.findByNoCodigoDeBarras", query = "SELECT m FROM Modelo m WHERE m.noCodigoDeBarras = :noCodigoDeBarras")})
 public class Modelo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,8 +45,11 @@ public class Modelo implements Serializable {
     @Basic(optional = false)
     @Column(name = "precio")
     private float precio;
+    @Basic(optional = false)
+    @Column(name = "noCodigoDeBarras")
+    private String noCodigoDeBarras;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idModelo")
-    private Collection<Talla> tallaCollection;
+    private List<Talla> tallaList;
 
     public Modelo() {
     }
@@ -49,10 +58,11 @@ public class Modelo implements Serializable {
         this.idModelo = idModelo;
     }
 
-    public Modelo(String idModelo, String nombre, float precio) {
+    public Modelo(String idModelo, String nombre, float precio, String noCodigoDeBarras) {
         this.idModelo = idModelo;
         this.nombre = nombre;
         this.precio = precio;
+        this.noCodigoDeBarras = noCodigoDeBarras;
     }
 
     public String getIdModelo() {
@@ -79,13 +89,21 @@ public class Modelo implements Serializable {
         this.precio = precio;
     }
 
-    @XmlTransient
-    public Collection<Talla> getTallaCollection() {
-        return tallaCollection;
+    public String getNoCodigoDeBarras() {
+        return noCodigoDeBarras;
     }
 
-    public void setTallaCollection(Collection<Talla> tallaCollection) {
-        this.tallaCollection = tallaCollection;
+    public void setNoCodigoDeBarras(String noCodigoDeBarras) {
+        this.noCodigoDeBarras = noCodigoDeBarras;
+    }
+
+    @XmlTransient
+    public List<Talla> getTallaList() {
+        return tallaList;
+    }
+
+    public void setTallaList(List<Talla> tallaList) {
+        this.tallaList = tallaList;
     }
 
     @Override
@@ -112,5 +130,5 @@ public class Modelo implements Serializable {
     public String toString() {
         return "objetosNegocio.Modelo[ idModelo=" + idModelo + " ]";
     }
-
+    
 }

@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
@@ -18,17 +22,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
+ * @author zippy
  */
 @Entity
 @Table(name = "movimientoenapartado")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MovimientoEnApartado.findAll", query = "SELECT m FROM MovimientoEnApartado m"),
-    @NamedQuery(name = "MovimientoEnApartado.findByIdMovimientoApartado", query = "SELECT m FROM MovimientoEnApartado m WHERE m.idMovimientoApartado = :idMovimientoApartado"),
-    @NamedQuery(name = "MovimientoEnApartado.findByFecha", query = "SELECT m FROM MovimientoEnApartado m WHERE m.fecha = :fecha"),
-    @NamedQuery(name = "MovimientoEnApartado.findByCantidadAbonada", query = "SELECT m FROM MovimientoEnApartado m WHERE m.cantidadAbonada = :cantidadAbonada")})
+    @NamedQuery(name = "Movimientoenapartado.findAll", query = "SELECT m FROM Movimientoenapartado m")
+    , @NamedQuery(name = "Movimientoenapartado.findByIdMovimientoApartado", query = "SELECT m FROM Movimientoenapartado m WHERE m.idMovimientoApartado = :idMovimientoApartado")
+    , @NamedQuery(name = "Movimientoenapartado.findByFecha", query = "SELECT m FROM Movimientoenapartado m WHERE m.fecha = :fecha")
+    , @NamedQuery(name = "Movimientoenapartado.findByCantidadAbonada", query = "SELECT m FROM Movimientoenapartado m WHERE m.cantidadAbonada = :cantidadAbonada")})
 public class MovimientoEnApartado implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -112,7 +117,7 @@ public class MovimientoEnApartado implements Serializable {
 
     @Override
     public String toString() {
-        return "objetosNegocio.MovimientoEnApartado[ idMovimientoApartado=" + idMovimientoApartado + " ]";
+        return "objetosNegocio.Movimientoenapartado[ idMovimientoApartado=" + idMovimientoApartado + " ]";
     }
-
+    
 }

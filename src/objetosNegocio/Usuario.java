@@ -1,8 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,17 +23,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
+ * @author zippy
  */
 @Entity
 @Table(name = "usuario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
-    @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1a = :contrase\u00f1a")})
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+    , @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
+    , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
+    , @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1a = :contrase\u00f1a")})
 public class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -42,9 +47,9 @@ public class Usuario implements Serializable {
     @Column(name = "contrase\u00f1a")
     private String contraseña;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private Collection<Venta> ventaCollection;
+    private List<Venta> ventaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private Collection<Apartado> apartadoCollection;
+    private List<Apartado> apartadoList;
     @JoinColumn(name = "idTipoUsuario", referencedColumnName = "idTipoUsuario")
     @ManyToOne(optional = false)
     private TipoUsuario idTipoUsuario;
@@ -87,21 +92,21 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Venta> getVentaCollection() {
-        return ventaCollection;
+    public List<Venta> getVentaList() {
+        return ventaList;
     }
 
-    public void setVentaCollection(Collection<Venta> ventaCollection) {
-        this.ventaCollection = ventaCollection;
+    public void setVentaList(List<Venta> ventaList) {
+        this.ventaList = ventaList;
     }
 
     @XmlTransient
-    public Collection<Apartado> getApartadoCollection() {
-        return apartadoCollection;
+    public List<Apartado> getApartadoList() {
+        return apartadoList;
     }
 
-    public void setApartadoCollection(Collection<Apartado> apartadoCollection) {
-        this.apartadoCollection = apartadoCollection;
+    public void setApartadoList(List<Apartado> apartadoList) {
+        this.apartadoList = apartadoList;
     }
 
     public TipoUsuario getIdTipoUsuario() {
@@ -136,5 +141,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "objetosNegocio.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-
+    
 }

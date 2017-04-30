@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
@@ -18,18 +22,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
+ * @author zippy
  */
 @Entity
 @Table(name = "movimientoenventa")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MovimientoEnVenta.findAll", query = "SELECT m FROM MovimientoEnVenta m"),
-    @NamedQuery(name = "MovimientoEnVenta.findByIdMovimientoVenta", query = "SELECT m FROM MovimientoEnVenta m WHERE m.idMovimientoVenta = :idMovimientoVenta"),
-    @NamedQuery(name = "MovimientoEnVenta.findByFecha", query = "SELECT m FROM MovimientoEnVenta m WHERE m.fecha = :fecha"),
-    @NamedQuery(name = "MovimientoEnVenta.findByDescripcion", query = "SELECT m FROM MovimientoEnVenta m WHERE m.descripcion = :descripcion"),
-    @NamedQuery(name = "MovimientoEnVenta.findByCantidadmovida", query = "SELECT m FROM MovimientoEnVenta m WHERE m.cantidadmovida = :cantidadmovida")})
+    @NamedQuery(name = "Movimientoenventa.findAll", query = "SELECT m FROM Movimientoenventa m")
+    , @NamedQuery(name = "Movimientoenventa.findByIdMovimientoVenta", query = "SELECT m FROM Movimientoenventa m WHERE m.idMovimientoVenta = :idMovimientoVenta")
+    , @NamedQuery(name = "Movimientoenventa.findByFecha", query = "SELECT m FROM Movimientoenventa m WHERE m.fecha = :fecha")
+    , @NamedQuery(name = "Movimientoenventa.findByDescripcion", query = "SELECT m FROM Movimientoenventa m WHERE m.descripcion = :descripcion")
+    , @NamedQuery(name = "Movimientoenventa.findByCantidadmovida", query = "SELECT m FROM Movimientoenventa m WHERE m.cantidadmovida = :cantidadmovida")})
 public class MovimientoEnVenta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -125,7 +130,7 @@ public class MovimientoEnVenta implements Serializable {
 
     @Override
     public String toString() {
-        return "objetosNegocio.MovimientoEnVenta[ idMovimientoVenta=" + idMovimientoVenta + " ]";
+        return "objetosNegocio.Movimientoenventa[ idMovimientoVenta=" + idMovimientoVenta + " ]";
     }
-
+    
 }

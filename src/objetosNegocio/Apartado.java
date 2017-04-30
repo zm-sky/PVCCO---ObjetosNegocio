@@ -1,9 +1,13 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,23 +26,22 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
- * @author Adrian Martinez
- * @author Robert Pedraza
+ * @author zippy
  */
 @Entity
 @Table(name = "apartado")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Apartado.findAll", query = "SELECT a FROM Apartado a"),
-    @NamedQuery(name = "Apartado.findByIdApartado", query = "SELECT a FROM Apartado a WHERE a.idApartado = :idApartado"),
-    @NamedQuery(name = "Apartado.findByNombreCliente", query = "SELECT a FROM Apartado a WHERE a.nombreCliente = :nombreCliente"),
-    @NamedQuery(name = "Apartado.findByTelefono", query = "SELECT a FROM Apartado a WHERE a.telefono = :telefono"),
-    @NamedQuery(name = "Apartado.findByPrecioTotal", query = "SELECT a FROM Apartado a WHERE a.precioTotal = :precioTotal"),
-    @NamedQuery(name = "Apartado.findByEstado", query = "SELECT a FROM Apartado a WHERE a.estado = :estado"),
-    @NamedQuery(name = "Apartado.findByFechaInicio", query = "SELECT a FROM Apartado a WHERE a.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "Apartado.findByFechaFin", query = "SELECT a FROM Apartado a WHERE a.fechaFin = :fechaFin")})
+    @NamedQuery(name = "Apartado.findAll", query = "SELECT a FROM Apartado a")
+    , @NamedQuery(name = "Apartado.findByIdApartado", query = "SELECT a FROM Apartado a WHERE a.idApartado = :idApartado")
+    , @NamedQuery(name = "Apartado.findByNombreCliente", query = "SELECT a FROM Apartado a WHERE a.nombreCliente = :nombreCliente")
+    , @NamedQuery(name = "Apartado.findByTelefono", query = "SELECT a FROM Apartado a WHERE a.telefono = :telefono")
+    , @NamedQuery(name = "Apartado.findByPrecioTotal", query = "SELECT a FROM Apartado a WHERE a.precioTotal = :precioTotal")
+    , @NamedQuery(name = "Apartado.findByEstado", query = "SELECT a FROM Apartado a WHERE a.estado = :estado")
+    , @NamedQuery(name = "Apartado.findByFechaInicio", query = "SELECT a FROM Apartado a WHERE a.fechaInicio = :fechaInicio")
+    , @NamedQuery(name = "Apartado.findByFechaFin", query = "SELECT a FROM Apartado a WHERE a.fechaFin = :fechaFin")})
 public class Apartado implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -65,12 +68,12 @@ public class Apartado implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idApartado")
-    private Collection<MovimientoEnApartado> movimientoEnApartadoCollection;
+    private List<MovimientoEnApartado> movimientoenapartadoList;
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idApartado")
-    private Collection<TallaApartado> tallaApartadoCollection;
+    private List<TallaApartado> tallaapartadoList;
 
     public Apartado() {
     }
@@ -146,12 +149,12 @@ public class Apartado implements Serializable {
     }
 
     @XmlTransient
-    public Collection<MovimientoEnApartado> getMovimientoEnApartadoCollection() {
-        return movimientoEnApartadoCollection;
+    public List<MovimientoEnApartado> getMovimientoenapartadoList() {
+        return movimientoenapartadoList;
     }
 
-    public void setMovimientoEnApartadoCollection(Collection<MovimientoEnApartado> movimientoEnApartadoCollection) {
-        this.movimientoEnApartadoCollection = movimientoEnApartadoCollection;
+    public void setMovimientoenapartadoList(List<MovimientoEnApartado> movimientoenapartadoList) {
+        this.movimientoenapartadoList = movimientoenapartadoList;
     }
 
     public Usuario getIdUsuario() {
@@ -163,12 +166,12 @@ public class Apartado implements Serializable {
     }
 
     @XmlTransient
-    public Collection<TallaApartado> getTallaApartadoCollection() {
-        return tallaApartadoCollection;
+    public List<TallaApartado> getTallaapartadoList() {
+        return tallaapartadoList;
     }
 
-    public void setTallaApartadoCollection(Collection<TallaApartado> tallaApartadoCollection) {
-        this.tallaApartadoCollection = tallaApartadoCollection;
+    public void setTallaapartadoList(List<TallaApartado> tallaapartadoList) {
+        this.tallaapartadoList = tallaapartadoList;
     }
 
     @Override
@@ -195,5 +198,5 @@ public class Apartado implements Serializable {
     public String toString() {
         return "objetosNegocio.Apartado[ idApartado=" + idApartado + " ]";
     }
-
+    
 }

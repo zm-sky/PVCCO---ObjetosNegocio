@@ -1,8 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,20 +23,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
+ * @author zippy
  */
 @Entity
 @Table(name = "talla")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Talla.findAll", query = "SELECT t FROM Talla t"),
-    @NamedQuery(name = "Talla.findByIdTalla", query = "SELECT t FROM Talla t WHERE t.idTalla = :idTalla"),
-    @NamedQuery(name = "Talla.findByTalla", query = "SELECT t FROM Talla t WHERE t.talla = :talla AND  t.idModelo = :idModelo"),
-    @NamedQuery(name = "Talla.findByModelo", query = "SELECT t FROM Talla t WHERE t.idModelo = :idModelo"),
-    @NamedQuery(name = "Talla.findByInventarioApartado", query = "SELECT t FROM Talla t WHERE t.inventarioApartado = :inventarioApartado"),
-    @NamedQuery(name = "Talla.findByInventarioRegular", query = "SELECT t FROM Talla t WHERE t.inventarioRegular = :inventarioRegular"),
-    @NamedQuery(name = "Talla.findByNoCodigoDeBarras", query = "SELECT t FROM Talla t WHERE t.noCodigoDeBarras = :noCodigoDeBarras")})
+    @NamedQuery(name = "Talla.findAll", query = "SELECT t FROM Talla t")
+    , @NamedQuery(name = "Talla.findByIdTalla", query = "SELECT t FROM Talla t WHERE t.idTalla = :idTalla")
+    , @NamedQuery(name = "Talla.findByTalla", query = "SELECT t FROM Talla t WHERE t.talla = :talla")
+    , @NamedQuery(name = "Talla.findByInventarioApartado", query = "SELECT t FROM Talla t WHERE t.inventarioApartado = :inventarioApartado")
+    , @NamedQuery(name = "Talla.findByInventarioRegular", query = "SELECT t FROM Talla t WHERE t.inventarioRegular = :inventarioRegular")})
 public class Talla implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -47,18 +50,15 @@ public class Talla implements Serializable {
     @Basic(optional = false)
     @Column(name = "inventarioRegular")
     private int inventarioRegular;
-    @Basic(optional = false)
-    @Column(name = "noCodigoDeBarras")
-    private String noCodigoDeBarras;
     @JoinColumn(name = "idModelo", referencedColumnName = "idModelo")
     @ManyToOne(optional = false)
     private Modelo idModelo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla")
-    private Collection<BajaDeInventario> bajaDeInventarioCollection;
+    private List<BajaDeInventario> bajadeinventarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla")
-    private Collection<VentaTalla> ventaTallaCollection;
+    private List<VentaTalla> ventatallaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla")
-    private Collection<TallaApartado> tallaApartadoCollection;
+    private List<TallaApartado> tallaapartadoList;
 
     public Talla() {
     }
@@ -67,12 +67,11 @@ public class Talla implements Serializable {
         this.idTalla = idTalla;
     }
 
-    public Talla(String idTalla, String talla, int inventarioApartado, int inventarioRegular, String noCodigoDeBarras) {
+    public Talla(String idTalla, String talla, int inventarioApartado, int inventarioRegular) {
         this.idTalla = idTalla;
         this.talla = talla;
         this.inventarioApartado = inventarioApartado;
         this.inventarioRegular = inventarioRegular;
-        this.noCodigoDeBarras = noCodigoDeBarras;
     }
 
     public String getIdTalla() {
@@ -107,14 +106,6 @@ public class Talla implements Serializable {
         this.inventarioRegular = inventarioRegular;
     }
 
-    public String getNoCodigoDeBarras() {
-        return noCodigoDeBarras;
-    }
-
-    public void setNoCodigoDeBarras(String noCodigoDeBarras) {
-        this.noCodigoDeBarras = noCodigoDeBarras;
-    }
-
     public Modelo getIdModelo() {
         return idModelo;
     }
@@ -124,30 +115,30 @@ public class Talla implements Serializable {
     }
 
     @XmlTransient
-    public Collection<BajaDeInventario> getBajaDeInventarioCollection() {
-        return bajaDeInventarioCollection;
+    public List<BajaDeInventario> getBajadeinventarioList() {
+        return bajadeinventarioList;
     }
 
-    public void setBajaDeInventarioCollection(Collection<BajaDeInventario> bajaDeInventarioCollection) {
-        this.bajaDeInventarioCollection = bajaDeInventarioCollection;
-    }
-
-    @XmlTransient
-    public Collection<VentaTalla> getVentaTallaCollection() {
-        return ventaTallaCollection;
-    }
-
-    public void setVentaTallaCollection(Collection<VentaTalla> ventaTallaCollection) {
-        this.ventaTallaCollection = ventaTallaCollection;
+    public void setBajadeinventarioList(List<BajaDeInventario> bajadeinventarioList) {
+        this.bajadeinventarioList = bajadeinventarioList;
     }
 
     @XmlTransient
-    public Collection<TallaApartado> getTallaApartadoCollection() {
-        return tallaApartadoCollection;
+    public List<VentaTalla> getVentatallaList() {
+        return ventatallaList;
     }
 
-    public void setTallaApartadoCollection(Collection<TallaApartado> tallaApartadoCollection) {
-        this.tallaApartadoCollection = tallaApartadoCollection;
+    public void setVentatallaList(List<VentaTalla> ventatallaList) {
+        this.ventatallaList = ventatallaList;
+    }
+
+    @XmlTransient
+    public List<TallaApartado> getTallaapartadoList() {
+        return tallaapartadoList;
+    }
+
+    public void setTallaapartadoList(List<TallaApartado> tallaapartadoList) {
+        this.tallaapartadoList = tallaapartadoList;
     }
 
     @Override
@@ -174,5 +165,5 @@ public class Talla implements Serializable {
     public String toString() {
         return "objetosNegocio.Talla[ idTalla=" + idTalla + " ]";
     }
-
+    
 }

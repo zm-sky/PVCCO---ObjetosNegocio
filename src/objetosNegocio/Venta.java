@@ -1,9 +1,13 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package objetosNegocio;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,18 +26,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Raul Karim Sabag Ballesteros
+ * @author zippy
  */
 @Entity
 @Table(name = "venta")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v"),
-    @NamedQuery(name = "Venta.findByIdVenta", query = "SELECT v FROM Venta v WHERE v.idVenta = :idVenta"),
-    @NamedQuery(name = "Venta.findByFecha", query = "SELECT v FROM Venta v WHERE v.fecha = :fecha"),
-    @NamedQuery(name = "Venta.findByPagoLiquidacionApartado", query = "SELECT v FROM Venta v WHERE v.pagoLiquidacionApartado = :pagoLiquidacionApartado"),
-    @NamedQuery(name = "Venta.findByPrecioTotal", query = "SELECT v FROM Venta v WHERE v.precioTotal = :precioTotal")})
+    @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")
+    , @NamedQuery(name = "Venta.findByIdVenta", query = "SELECT v FROM Venta v WHERE v.idVenta = :idVenta")
+    , @NamedQuery(name = "Venta.findByFecha", query = "SELECT v FROM Venta v WHERE v.fecha = :fecha")
+    , @NamedQuery(name = "Venta.findByPagoLiquidacionApartado", query = "SELECT v FROM Venta v WHERE v.pagoLiquidacionApartado = :pagoLiquidacionApartado")
+    , @NamedQuery(name = "Venta.findByPrecioTotal", query = "SELECT v FROM Venta v WHERE v.precioTotal = :precioTotal")})
 public class Venta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -53,9 +58,9 @@ public class Venta implements Serializable {
     @ManyToOne(optional = false)
     private Usuario idUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    private Collection<MovimientoEnVenta> movimientoEnVentaCollection;
+    private List<MovimientoEnVenta> movimientoenventaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    private Collection<VentaTalla> ventaTallaCollection;
+    private List<VentaTalla> ventatallaList;
 
     public Venta() {
     }
@@ -112,21 +117,21 @@ public class Venta implements Serializable {
     }
 
     @XmlTransient
-    public Collection<MovimientoEnVenta> getMovimientoEnVentaCollection() {
-        return movimientoEnVentaCollection;
+    public List<MovimientoEnVenta> getMovimientoenventaList() {
+        return movimientoenventaList;
     }
 
-    public void setMovimientoEnVentaCollection(Collection<MovimientoEnVenta> movimientoEnVentaCollection) {
-        this.movimientoEnVentaCollection = movimientoEnVentaCollection;
+    public void setMovimientoenventaList(List<MovimientoEnVenta> movimientoenventaList) {
+        this.movimientoenventaList = movimientoenventaList;
     }
 
     @XmlTransient
-    public Collection<VentaTalla> getVentaTallaCollection() {
-        return ventaTallaCollection;
+    public List<VentaTalla> getVentatallaList() {
+        return ventatallaList;
     }
 
-    public void setVentaTallaCollection(Collection<VentaTalla> ventaTallaCollection) {
-        this.ventaTallaCollection = ventaTallaCollection;
+    public void setVentatallaList(List<VentaTalla> ventatallaList) {
+        this.ventatallaList = ventatallaList;
     }
 
     @Override
@@ -153,5 +158,5 @@ public class Venta implements Serializable {
     public String toString() {
         return "objetosNegocio.Venta[ idVenta=" + idVenta + " ]";
     }
-
+    
 }
