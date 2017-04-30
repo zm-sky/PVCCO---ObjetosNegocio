@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "bajadeinventario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bajadeinventario.findAll", query = "SELECT b FROM Bajadeinventario b")
-    , @NamedQuery(name = "Bajadeinventario.findByIdBajaInventario", query = "SELECT b FROM Bajadeinventario b WHERE b.idBajaInventario = :idBajaInventario")
-    , @NamedQuery(name = "Bajadeinventario.findByDescripcion", query = "SELECT b FROM Bajadeinventario b WHERE b.descripcion = :descripcion")
-    , @NamedQuery(name = "Bajadeinventario.findByFecha", query = "SELECT b FROM Bajadeinventario b WHERE b.fecha = :fecha")
-    , @NamedQuery(name = "Bajadeinventario.findByCantidad", query = "SELECT b FROM Bajadeinventario b WHERE b.cantidad = :cantidad")})
+    @NamedQuery(name = "BajaDeInventario.findAll", query = "SELECT b FROM BajaDeInventario b")
+    , @NamedQuery(name = "BajaDeInventario.findByIdBajaInventario", query = "SELECT b FROM BajaDeInventario b WHERE b.idBajaInventario = :idBajaInventario")
+    , @NamedQuery(name = "BajaDeInventario.findByDescripcion", query = "SELECT b FROM BajaDeInventario b WHERE b.descripcion = :descripcion")
+    , @NamedQuery(name = "BajaDeInventario.findByFecha", query = "SELECT b FROM BajaDeInventario b WHERE b.fecha = :fecha")
+    , @NamedQuery(name = "BajaDeInventario.findByCantidad", query = "SELECT b FROM BajaDeInventario b WHERE b.cantidad = :cantidad")})
 public class BajaDeInventario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -130,7 +130,7 @@ public class BajaDeInventario implements Serializable {
 
     @Override
     public String toString() {
-        return "objetosNegocio.Bajadeinventario[ idBajaInventario=" + idBajaInventario + " ]";
+        return "objetosNegocio.BajaDeInventario[ idBajaInventario=" + idBajaInventario + " ]";
     }
     
 }

@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,6 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Talla.findAll", query = "SELECT t FROM Talla t")
     , @NamedQuery(name = "Talla.findByIdTalla", query = "SELECT t FROM Talla t WHERE t.idTalla = :idTalla")
     , @NamedQuery(name = "Talla.findByTalla", query = "SELECT t FROM Talla t WHERE t.talla = :talla")
+    , @NamedQuery(name = "Talla.findByModelo", query = "SELECT t FROM Talla t INNER JOIN Modelo m on m.idModelo = t.idModelo WHERE m.idModelo = :idModelo")
+    , @NamedQuery(name = "Talla.findTallaByTalla", query = "SELECT t FROM Talla t WHERE t.talla = :talla AND t.idModelo = :idModelo")
     , @NamedQuery(name = "Talla.findByInventarioApartado", query = "SELECT t FROM Talla t WHERE t.inventarioApartado = :inventarioApartado")
     , @NamedQuery(name = "Talla.findByInventarioRegular", query = "SELECT t FROM Talla t WHERE t.inventarioRegular = :inventarioRegular")})
 public class Talla implements Serializable {
@@ -53,12 +56,12 @@ public class Talla implements Serializable {
     @JoinColumn(name = "idModelo", referencedColumnName = "idModelo")
     @ManyToOne(optional = false)
     private Modelo idModelo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla")
-    private List<BajaDeInventario> bajadeinventarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla")
-    private List<VentaTalla> ventatallaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla")
-    private List<TallaApartado> tallaapartadoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla", fetch=FetchType.EAGER)
+    private List<BajaDeInventario> bajaDeInventarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla", fetch=FetchType.EAGER)
+    private List<VentaTalla> ventaTallaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTalla", fetch=FetchType.EAGER)
+    private List<TallaApartado> tallaApartadoList;
 
     public Talla() {
     }
@@ -115,30 +118,30 @@ public class Talla implements Serializable {
     }
 
     @XmlTransient
-    public List<BajaDeInventario> getBajadeinventarioList() {
-        return bajadeinventarioList;
+    public List<BajaDeInventario> getBajaDeInventarioList() {
+        return bajaDeInventarioList;
     }
 
-    public void setBajadeinventarioList(List<BajaDeInventario> bajadeinventarioList) {
-        this.bajadeinventarioList = bajadeinventarioList;
-    }
-
-    @XmlTransient
-    public List<VentaTalla> getVentatallaList() {
-        return ventatallaList;
-    }
-
-    public void setVentatallaList(List<VentaTalla> ventatallaList) {
-        this.ventatallaList = ventatallaList;
+    public void setBajaDeInventarioList(List<BajaDeInventario> bajaDeInventarioList) {
+        this.bajaDeInventarioList = bajaDeInventarioList;
     }
 
     @XmlTransient
-    public List<TallaApartado> getTallaapartadoList() {
-        return tallaapartadoList;
+    public List<VentaTalla> getVentaTallaList() {
+        return ventaTallaList;
     }
 
-    public void setTallaapartadoList(List<TallaApartado> tallaapartadoList) {
-        this.tallaapartadoList = tallaapartadoList;
+    public void setVentaTallaList(List<VentaTalla> ventaTallaList) {
+        this.ventaTallaList = ventaTallaList;
+    }
+
+    @XmlTransient
+    public List<TallaApartado> getTallaApartadoList() {
+        return tallaApartadoList;
+    }
+
+    public void setTallaApartadoList(List<TallaApartado> tallaApartadoList) {
+        this.tallaApartadoList = tallaApartadoList;
     }
 
     @Override

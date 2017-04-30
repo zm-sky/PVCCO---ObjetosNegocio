@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "tallaapartado")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tallaapartado.findAll", query = "SELECT t FROM Tallaapartado t")
-    , @NamedQuery(name = "Tallaapartado.findByIdTallaApartado", query = "SELECT t FROM Tallaapartado t WHERE t.idTallaApartado = :idTallaApartado")
-    , @NamedQuery(name = "Tallaapartado.findByPrecio", query = "SELECT t FROM Tallaapartado t WHERE t.precio = :precio")})
+    @NamedQuery(name = "TallaApartado.findAll", query = "SELECT t FROM TallaApartado t")
+    , @NamedQuery(name = "TallaApartado.findByIdTallaApartado", query = "SELECT t FROM TallaApartado t WHERE t.idTallaApartado = :idTallaApartado")
+    , @NamedQuery(name = "TallaApartado.findByPrecio", query = "SELECT t FROM TallaApartado t WHERE t.precio = :precio")})
 public class TallaApartado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -111,7 +111,7 @@ public class TallaApartado implements Serializable {
 
     @Override
     public String toString() {
-        return "objetosNegocio.Tallaapartado[ idTallaApartado=" + idTallaApartado + " ]";
+        return "objetosNegocio.TallaApartado[ idTallaApartado=" + idTallaApartado + " ]";
     }
     
 }

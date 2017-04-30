@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -67,13 +68,13 @@ public class Apartado implements Serializable {
     @Column(name = "fechaFin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idApartado")
-    private List<MovimientoEnApartado> movimientoenapartadoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idApartado", fetch=FetchType.EAGER)
+    private List<MovimientoEnApartado> movimientoEnApartadoList;
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idApartado")
-    private List<TallaApartado> tallaapartadoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idApartado", fetch=FetchType.EAGER)
+    private List<TallaApartado> tallaApartadoList;
 
     public Apartado() {
     }
@@ -149,12 +150,12 @@ public class Apartado implements Serializable {
     }
 
     @XmlTransient
-    public List<MovimientoEnApartado> getMovimientoenapartadoList() {
-        return movimientoenapartadoList;
+    public List<MovimientoEnApartado> getMovimientoEnApartadoList() {
+        return movimientoEnApartadoList;
     }
 
-    public void setMovimientoenapartadoList(List<MovimientoEnApartado> movimientoenapartadoList) {
-        this.movimientoenapartadoList = movimientoenapartadoList;
+    public void setMovimientoEnApartadoList(List<MovimientoEnApartado> movimientoEnApartadoList) {
+        this.movimientoEnApartadoList = movimientoEnApartadoList;
     }
 
     public Usuario getIdUsuario() {
@@ -166,12 +167,12 @@ public class Apartado implements Serializable {
     }
 
     @XmlTransient
-    public List<TallaApartado> getTallaapartadoList() {
-        return tallaapartadoList;
+    public List<TallaApartado> getTallaApartadoList() {
+        return tallaApartadoList;
     }
 
-    public void setTallaapartadoList(List<TallaApartado> tallaapartadoList) {
-        this.tallaapartadoList = tallaapartadoList;
+    public void setTallaApartadoList(List<TallaApartado> tallaApartadoList) {
+        this.tallaApartadoList = tallaApartadoList;
     }
 
     @Override

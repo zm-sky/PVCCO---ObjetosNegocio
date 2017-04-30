@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -57,10 +58,10 @@ public class Venta implements Serializable {
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    private List<MovimientoEnVenta> movimientoenventaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    private List<VentaTalla> ventatallaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta", fetch=FetchType.EAGER)
+    private List<MovimientoEnVenta> movimientoEnVentaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta", fetch=FetchType.EAGER)
+    private List<VentaTalla> ventaTallaList;
 
     public Venta() {
     }
@@ -117,21 +118,21 @@ public class Venta implements Serializable {
     }
 
     @XmlTransient
-    public List<MovimientoEnVenta> getMovimientoenventaList() {
-        return movimientoenventaList;
+    public List<MovimientoEnVenta> getMovimientoEnVentaList() {
+        return movimientoEnVentaList;
     }
 
-    public void setMovimientoenventaList(List<MovimientoEnVenta> movimientoenventaList) {
-        this.movimientoenventaList = movimientoenventaList;
+    public void setMovimientoEnVentaList(List<MovimientoEnVenta> movimientoEnVentaList) {
+        this.movimientoEnVentaList = movimientoEnVentaList;
     }
 
     @XmlTransient
-    public List<VentaTalla> getVentatallaList() {
-        return ventatallaList;
+    public List<VentaTalla> getVentaTallaList() {
+        return ventaTallaList;
     }
 
-    public void setVentatallaList(List<VentaTalla> ventatallaList) {
-        this.ventatallaList = ventatallaList;
+    public void setVentaTallaList(List<VentaTalla> ventaTallaList) {
+        this.ventaTallaList = ventaTallaList;
     }
 
     @Override

@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tipousuario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tipousuario.findAll", query = "SELECT t FROM Tipousuario t")
-    , @NamedQuery(name = "Tipousuario.findByIdTipoUsuario", query = "SELECT t FROM Tipousuario t WHERE t.idTipoUsuario = :idTipoUsuario")
-    , @NamedQuery(name = "Tipousuario.findByTipo", query = "SELECT t FROM Tipousuario t WHERE t.tipo = :tipo")})
+    @NamedQuery(name = "TipoUsuario.findAll", query = "SELECT t FROM TipoUsuario t")
+    , @NamedQuery(name = "TipoUsuario.findByIdTipoUsuario", query = "SELECT t FROM TipoUsuario t WHERE t.idTipoUsuario = :idTipoUsuario")
+    , @NamedQuery(name = "TipoUsuario.findByTipo", query = "SELECT t FROM TipoUsuario t WHERE t.tipo = :tipo")})
 public class TipoUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -102,7 +102,7 @@ public class TipoUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "objetosNegocio.Tipousuario[ idTipoUsuario=" + idTipoUsuario + " ]";
+        return "objetosNegocio.TipoUsuario[ idTipoUsuario=" + idTipoUsuario + " ]";
     }
     
 }

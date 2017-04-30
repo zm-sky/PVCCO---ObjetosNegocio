@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "ventatalla")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ventatalla.findAll", query = "SELECT v FROM Ventatalla v")
-    , @NamedQuery(name = "Ventatalla.findByIdVentaTalla", query = "SELECT v FROM Ventatalla v WHERE v.idVentaTalla = :idVentaTalla")
-    , @NamedQuery(name = "Ventatalla.findByPrecio", query = "SELECT v FROM Ventatalla v WHERE v.precio = :precio")})
+    @NamedQuery(name = "VentaTalla.findAll", query = "SELECT v FROM VentaTalla v")
+    , @NamedQuery(name = "VentaTalla.findByIdVentaTalla", query = "SELECT v FROM VentaTalla v WHERE v.idVentaTalla = :idVentaTalla")
+    , @NamedQuery(name = "VentaTalla.findByPrecio", query = "SELECT v FROM VentaTalla v WHERE v.precio = :precio")})
 public class VentaTalla implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -111,7 +111,7 @@ public class VentaTalla implements Serializable {
 
     @Override
     public String toString() {
-        return "objetosNegocio.Ventatalla[ idVentaTalla=" + idVentaTalla + " ]";
+        return "objetosNegocio.VentaTalla[ idVentaTalla=" + idVentaTalla + " ]";
     }
     
 }
